@@ -21,7 +21,8 @@ class IndexHandler(tornado.web.RequestHandler):
     def get(self):
         query = self.get_argument('q')
         client = tornado.httpclient.HTTPClient()
-        response = client.fetch("http://search.twitter.com/search.json?" +
+        # response = client.fetch("http://search.twitter.com/search.json?" +
+        response = client.fetch("http://localhost:9999?" +
                                 urllib.urlencode({"q": query.encode('utf8'), "result_type": "recent", "rpp": 100}))
         body = json.loads(response.body)
         result_count = len(body['results'])
